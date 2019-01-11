@@ -1,0 +1,14 @@
+#app ul {
+	/* リストの行頭の点を非表示 */
+	list-style: none;
+}
+
+/* li要素の中のspanのクラスがdoneのとき */
+#app li > span.done {
+	/* タスクに線を引く */
+	text-decoration: line-through;
+}
+
+[v-cloak] {
+	display: none;
+}

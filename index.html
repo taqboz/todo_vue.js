@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+	<html lang="ja">
+	<head>
+		<!-- meta -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title>ToDoApp（Vue.js）</title>
+		<meta name="description" content="Vue.js勉強用ToDoアプリ">
+		<meta name="keywords" content="">
+		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<!-- stylesheet -->
+		<link rel="stylesheet" href="style.css" media="all">
+	</head>
+
+	<body>
+		<div id="app">
+			<h2>TODO List</h2>
+			<!-- submitイベントを防いで(prevent)リダイレクトを無効化 -->
+			<form v-on:submit.prevent>
+				<!-- フォームの内容をデータと双方向バインディング -->
+				<input type="text" v-model="newItem">
+				<!-- buttonが押されるとaddItemメソッドを呼ぶ -->
+				<button v-on:click="addItem">
+				add
+				</button>
+			</form>
+			<ul>
+				<!-- 配列todosのvalueとインデックス番号取得 -->
+				<li v-for="(todo, index) in todos">
+					<!-- isDoneと双方向データバインディング -->
+					<input type="checkbox" v-model="todo.isDone"> 
+					<!-- class属性をバインディング（isDoneがtrueのときクラス名が'done'になる） -->
+					<span v-bind:class="{ done: todo.isDone }">{{ todo.item }}</span>
+					<!-- buttonが押されるとdeleteItemメソッドをindexを引数にして呼ぶ -->
+					<button v-on:click="deleteItem(index)">delete</button>
+				</li>
+			</ul>
+			<!-- デバック用 --
+			<pre>{{ $data }}</pre>
+			-->
+		</div>
+
+		<!-- vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+		<!-- javascript（todo_app） -->
+		<script src="script.js"></script>
+	</body>
+
+</html>
